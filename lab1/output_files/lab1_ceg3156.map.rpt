@@ -1,0 +1,1659 @@
+Analysis & Synthesis report for lab1_ceg3156
+Wed Feb 11 12:40:13 2026
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr
+ 12. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_sign
+ 13. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant
+ 14. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp
+ 15. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_sign
+ 16. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_mant
+ 17. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_exp
+ 18. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|comparator:cmp_exp
+ 19. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:exp_big_sel
+ 20. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:exp_sml_sel
+ 21. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:big_mant_sel
+ 22. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:sml_mant_sel
+ 23. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:big_sign_sel
+ 24. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:sml_sign_sel
+ 25. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|subtractor:diff_sub
+ 26. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|subtractor:diff_sub|ripple_adder:add_tc
+ 27. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux0
+ 28. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux1
+ 29. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux2i
+ 30. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_big_sign
+ 31. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sml_sign
+ 32. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big
+ 33. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml
+ 34. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common
+ 35. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sticky
+ 36. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|comparator:cmp_m
+ 37. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add9
+ 38. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_big_minus_sml
+ 39. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_big_minus_sml|ripple_adder:add_tc
+ 40. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_sml_minus_big
+ 41. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_sml_minus_big|ripple_adder:add_tc
+ 42. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_diff_abs
+ 43. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_norm_in
+ 44. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_mag_sign
+ 45. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_sign_out
+ 46. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add_exp1
+ 47. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux0
+ 48. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux1
+ 49. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux2i
+ 50. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux3
+ 51. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_exp_shamt
+ 52. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_exp_shamt|ripple_adder:add_tc
+ 53. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_mant8_unrounded
+ 54. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_guard
+ 55. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:rnd
+ 56. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_exp_incdec
+ 57. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add_exp_round
+ 58. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|comparator:cmp_ovf
+ 59. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sign_out
+ 60. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out
+ 61. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_out
+ 62. Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_overflow
+ 63. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|comparator:cmp_ovf"
+ 64. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add_exp_round"
+ 65. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:rnd"
+ 66. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_guard"
+ 67. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_exp_shamt"
+ 68. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux3"
+ 69. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux2i"
+ 70. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux1"
+ 71. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux0"
+ 72. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl"
+ 73. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|leading_one_detector9:lod"
+ 74. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add_exp1"
+ 75. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_sml_minus_big"
+ 76. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_big_minus_sml|ripple_adder:add_tc"
+ 77. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_big_minus_sml"
+ 78. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add9"
+ 79. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|comparator:cmp_m|oneBitComparator:msb"
+ 80. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|comparator:cmp_m"
+ 81. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:8:ff"
+ 82. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:7:ff"
+ 83. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:6:ff"
+ 84. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:5:ff"
+ 85. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:4:ff"
+ 86. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:3:ff"
+ 87. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:2:ff"
+ 88. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:1:ff"
+ 89. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:0:ff"
+ 90. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux2i"
+ 91. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux1"
+ 92. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux0"
+ 93. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift"
+ 94. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|subtractor:diff_sub|ripple_adder:add_tc"
+ 95. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|subtractor:diff_sub"
+ 96. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|comparator:cmp_exp|oneBitComparator:msb"
+ 97. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|comparator:cmp_exp"
+ 98. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:6:ff"
+ 99. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:5:ff"
+100. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:4:ff"
+101. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:3:ff"
+102. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:2:ff"
+103. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:1:ff"
+104. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff"
+105. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:7:ff"
+106. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:6:ff"
+107. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:5:ff"
+108. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:4:ff"
+109. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:3:ff"
+110. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:2:ff"
+111. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:1:ff"
+112. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:0:ff"
+113. Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_sign|enARdFF_2:\gen_ff:0:ff"
+114. Port Connectivity Checks: "fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr|enARdFF_2:\gen_ff:2:ff"
+115. Port Connectivity Checks: "fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr|enARdFF_2:\gen_ff:1:ff"
+116. Port Connectivity Checks: "fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr|enARdFF_2:\gen_ff:0:ff"
+117. Port Connectivity Checks: "fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr"
+118. Port Connectivity Checks: "fp_add_top:FP"
+119. Elapsed Time Per Partition
+120. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Feb 11 12:40:13 2026           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; lab1_ceg3156                                    ;
+; Top-level Entity Name              ; fpDemo                                          ;
+; Family                             ; Cyclone IV E                                    ;
+; Total logic elements               ; 14                                              ;
+;     Total combinational functions  ; 6                                               ;
+;     Dedicated logic registers      ; 14                                              ;
+; Total registers                    ; 14                                              ;
+; Total pins                         ; 19                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP4CE115F29C7      ;                    ;
+; Top-level entity name                                                      ; fpDemo             ; lab1_ceg3156       ;
+; Family name                                                                ; Cyclone IV E       ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                 ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM Block Balancing                                                   ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; On                 ; On                 ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 20     ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                     ;
++----------------------------------+-----------------+-----------------+-------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path              ; Library ;
++----------------------------------+-----------------+-----------------+-------------------------------------------+---------+
+; subtractor.vhd                   ; yes             ; User VHDL File  ; H:/CEG3156/lab1/subtractor.vhd            ;         ;
+; ripple_adder.vhd                 ; yes             ; User VHDL File  ; H:/CEG3156/lab1/ripple_adder.vhd          ;         ;
+; oneBitComparator.vhd             ; yes             ; User VHDL File  ; H:/CEG3156/lab1/oneBitComparator.vhd      ;         ;
+; nbitRegister.vhd                 ; yes             ; User VHDL File  ; H:/CEG3156/lab1/nbitRegister.vhd          ;         ;
+; mux2.vhd                         ; yes             ; User VHDL File  ; H:/CEG3156/lab1/mux2.vhd                  ;         ;
+; leading_one_detector9.vhd        ; yes             ; User VHDL File  ; H:/CEG3156/lab1/leading_one_detector9.vhd ;         ;
+; full_adder_1bit.vhd              ; yes             ; User VHDL File  ; H:/CEG3156/lab1/full_adder_1bit.vhd       ;         ;
+; fp_align.vhd                     ; yes             ; User VHDL File  ; H:/CEG3156/lab1/fp_align.vhd              ;         ;
+; fp_add_datapath.vhd              ; yes             ; User VHDL File  ; H:/CEG3156/lab1/fp_add_datapath.vhd       ;         ;
+; fp_add_core.vhd                  ; yes             ; User VHDL File  ; H:/CEG3156/lab1/fp_add_core.vhd           ;         ;
+; fp_add_control.vhd               ; yes             ; User VHDL File  ; H:/CEG3156/lab1/fp_add_control.vhd        ;         ;
+; enardFF_2.vhd                    ; yes             ; User VHDL File  ; H:/CEG3156/lab1/enardFF_2.vhd             ;         ;
+; comparator.vhd                   ; yes             ; User VHDL File  ; H:/CEG3156/lab1/comparator.vhd            ;         ;
+; barrel_shifter_right9.vhd        ; yes             ; User VHDL File  ; H:/CEG3156/lab1/barrel_shifter_right9.vhd ;         ;
+; barrel_shifter_left9.vhd         ; yes             ; User VHDL File  ; H:/CEG3156/lab1/barrel_shifter_left9.vhd  ;         ;
+; fpDemo.vhd                       ; yes             ; User VHDL File  ; H:/CEG3156/lab1/fpDemo.vhd                ;         ;
+; fp_add_top.vhd                   ; yes             ; User VHDL File  ; H:/CEG3156/lab1/fp_add_top.vhd            ;         ;
++----------------------------------+-----------------+-----------------+-------------------------------------------+---------+
+
+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimated Total logic elements              ; 14           ;
+;                                             ;              ;
+; Total combinational functions               ; 6            ;
+; Logic element usage by number of LUT inputs ;              ;
+;     -- 4 input functions                    ; 0            ;
+;     -- 3 input functions                    ; 5            ;
+;     -- <=2 input functions                  ; 1            ;
+;                                             ;              ;
+; Logic elements by mode                      ;              ;
+;     -- normal mode                          ; 6            ;
+;     -- arithmetic mode                      ; 0            ;
+;                                             ;              ;
+; Total registers                             ; 14           ;
+;     -- Dedicated logic registers            ; 14           ;
+;     -- I/O registers                        ; 0            ;
+;                                             ;              ;
+; I/O pins                                    ; 19           ;
+; Embedded Multiplier 9-bit elements          ; 0            ;
+; Maximum fan-out node                        ; GClock~input ;
+; Maximum fan-out                             ; 14           ;
+; Total fan-out                               ; 87           ;
+; Average fan-out                             ; 1.50         ;
++---------------------------------------------+--------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                               ;
++----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node             ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                           ; Library Name ;
++----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------+--------------+
+; |fpDemo                                ; 6 (0)             ; 14 (0)       ; 0           ; 0            ; 0       ; 0         ; 19   ; 0            ; |fpDemo                                                                                       ; work         ;
+;    |fp_add_top:FP|                     ; 6 (0)             ; 14 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP                                                                         ; work         ;
+;       |fp_add_datapath:data|           ; 6 (0)             ; 14 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data                                                    ; work         ;
+;          |fp_add_core:core|            ; 5 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|fp_add_core:core                                   ; work         ;
+;             |mux2:sel_exp_incdec|      ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_exp_incdec               ; work         ;
+;             |mux2:sel_mant8_unrounded| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_mant8_unrounded          ; work         ;
+;          |nbitRegister:reg_A_exp|      ; 0 (0)             ; 1 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp                             ; work         ;
+;             |enARdFF_2:\gen_ff:0:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff      ; work         ;
+;          |nbitRegister:reg_exp_common| ; 0 (0)             ; 1 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common                        ; work         ;
+;             |enARdFF_2:\gen_ff:6:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:6:ff ; work         ;
+;          |nbitRegister:reg_exp_out|    ; 0 (0)             ; 7 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_out                           ; work         ;
+;             |enARdFF_2:\gen_ff:0:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_out|enARdFF_2:\gen_ff:0:ff    ; work         ;
+;             |enARdFF_2:\gen_ff:1:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_out|enARdFF_2:\gen_ff:1:ff    ; work         ;
+;             |enARdFF_2:\gen_ff:2:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_out|enARdFF_2:\gen_ff:2:ff    ; work         ;
+;             |enARdFF_2:\gen_ff:3:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_out|enARdFF_2:\gen_ff:3:ff    ; work         ;
+;             |enARdFF_2:\gen_ff:4:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_out|enARdFF_2:\gen_ff:4:ff    ; work         ;
+;             |enARdFF_2:\gen_ff:5:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_out|enARdFF_2:\gen_ff:5:ff    ; work         ;
+;             |enARdFF_2:\gen_ff:6:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_out|enARdFF_2:\gen_ff:6:ff    ; work         ;
+;          |nbitRegister:reg_mant_out|   ; 0 (0)             ; 4 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out                          ; work         ;
+;             |enARdFF_2:\gen_ff:4:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:4:ff   ; work         ;
+;             |enARdFF_2:\gen_ff:5:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:5:ff   ; work         ;
+;             |enARdFF_2:\gen_ff:6:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:6:ff   ; work         ;
+;             |enARdFF_2:\gen_ff:7:ff|   ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:7:ff   ; work         ;
+;          |nbitRegister:reg_mant_sml|   ; 1 (0)             ; 1 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml                          ; work         ;
+;             |enARdFF_2:\gen_ff:8:ff|   ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |fpDemo|fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:8:ff   ; work         ;
++----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                                    ;
++---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------+
+; Register name                                                                               ; Reason for Removal                                                                                      ;
++---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------+
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_exp|enARdFF_2:\gen_ff:5:ff|int_q      ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_exp|enARdFF_2:\gen_ff:4:ff|int_q      ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_exp|enARdFF_2:\gen_ff:3:ff|int_q      ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_exp|enARdFF_2:\gen_ff:2:ff|int_q      ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_exp|enARdFF_2:\gen_ff:1:ff|int_q      ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_exp|enARdFF_2:\gen_ff:0:ff|int_q      ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_mant|enARdFF_2:\gen_ff:7:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_mant|enARdFF_2:\gen_ff:5:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_mant|enARdFF_2:\gen_ff:4:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_mant|enARdFF_2:\gen_ff:3:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_mant|enARdFF_2:\gen_ff:2:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_mant|enARdFF_2:\gen_ff:1:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_mant|enARdFF_2:\gen_ff:0:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_sign|enARdFF_2:\gen_ff:0:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:6:ff|int_q      ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:7:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:5:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:4:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:3:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:2:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:1:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:0:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_sign|enARdFF_2:\gen_ff:0:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:7:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:5:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:4:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:3:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:2:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:1:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:0:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sml_sign|enARdFF_2:\gen_ff:0:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_big_sign|enARdFF_2:\gen_ff:0:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sign_out|enARdFF_2:\gen_ff:0:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:1:ff|int_q ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:0:ff|int_q ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:2:ff|int_q ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:0:ff|int_q ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:3:ff|int_q ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:0:ff|int_q ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:4:ff|int_q ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:0:ff|int_q ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:5:ff|int_q ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:0:ff|int_q ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:1:ff|int_q      ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff|int_q      ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:2:ff|int_q      ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff|int_q      ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:3:ff|int_q      ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff|int_q      ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:4:ff|int_q      ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff|int_q      ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:5:ff|int_q      ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff|int_q      ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:6:ff|int_q     ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff|int_q      ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_exp|enARdFF_2:\gen_ff:6:ff|int_q      ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff|int_q      ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_mant|enARdFF_2:\gen_ff:6:ff|int_q     ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff|int_q      ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:8:ff|int_q   ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff|int_q      ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:0:ff|int_q ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:6:ff|int_q   ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:6:ff|int_q ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:4:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:3:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:2:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:1:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sticky|enARdFF_2:\gen_ff:0:ff|int_q     ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:6:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:0:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:1:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:0:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:3:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:2:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:7:ff|int_q   ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:6:ff|int_q ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:5:ff|int_q   ; Merged with fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:6:ff|int_q ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_overflow|enARdFF_2:\gen_ff:0:ff|int_q   ; Stuck at GND due to stuck port data_in                                                                  ;
+; Total Number of Removed Registers = 63                                                      ;                                                                                                         ;
++---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                                       ;
++----------------------------------------------------------------------------------------+---------------------------+----------------------------------------------------------------------------------------------+
+; Register name                                                                          ; Reason for Removal        ; Registers Removed due to This Register                                                       ;
++----------------------------------------------------------------------------------------+---------------------------+----------------------------------------------------------------------------------------------+
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_exp|enARdFF_2:\gen_ff:2:ff|int_q ; Stuck at GND              ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:7:ff|int_q,   ;
+;                                                                                        ; due to stuck port data_in ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:5:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:4:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:3:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:2:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:1:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:0:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sml_sign|enARdFF_2:\gen_ff:0:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_big_sign|enARdFF_2:\gen_ff:0:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sign_out|enARdFF_2:\gen_ff:0:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common|enARdFF_2:\gen_ff:0:ff|int_q, ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:1:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:0:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:3:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out|enARdFF_2:\gen_ff:2:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_overflow|enARdFF_2:\gen_ff:0:ff|int_q    ;
+; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_exp|enARdFF_2:\gen_ff:5:ff|int_q ; Stuck at GND              ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:4:ff|int_q,   ;
+;                                                                                        ; due to stuck port data_in ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:3:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:2:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:1:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sticky|enARdFF_2:\gen_ff:0:ff|int_q,     ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:6:ff|int_q,   ;
+;                                                                                        ;                           ; fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml|enARdFF_2:\gen_ff:0:ff|int_q    ;
++----------------------------------------------------------------------------------------+---------------------------+----------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 14    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 14    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr ;
++----------------+-------+-----------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                        ;
++----------------+-------+-----------------------------------------------------------------------------+
+; n              ; 3     ; Signed Integer                                                              ;
++----------------+-------+-----------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_sign ;
++----------------+-------+--------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                           ;
++----------------+-------+--------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                 ;
++----------------+-------+--------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant ;
++----------------+-------+--------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                           ;
++----------------+-------+--------------------------------------------------------------------------------+
+; n              ; 8     ; Signed Integer                                                                 ;
++----------------+-------+--------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp ;
++----------------+-------+-------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                          ;
++----------------+-------+-------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                ;
++----------------+-------+-------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_sign ;
++----------------+-------+--------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                           ;
++----------------+-------+--------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                 ;
++----------------+-------+--------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_mant ;
++----------------+-------+--------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                           ;
++----------------+-------+--------------------------------------------------------------------------------+
+; n              ; 8     ; Signed Integer                                                                 ;
++----------------+-------+--------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_B_exp ;
++----------------+-------+-------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                          ;
++----------------+-------+-------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                ;
++----------------+-------+-------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|comparator:cmp_exp ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:exp_big_sel ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                     ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                           ;
++----------------+-------+------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:exp_sml_sel ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                     ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                           ;
++----------------+-------+------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:big_mant_sel ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; n              ; 8     ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:sml_mant_sel ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; n              ; 8     ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:big_sign_sel ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:sml_sign_sel ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|subtractor:diff_sub ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                        ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                              ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|subtractor:diff_sub|ripple_adder:add_tc ;
++----------------+-------+-----------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                            ;
++----------------+-------+-----------------------------------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                                                  ;
++----------------+-------+-----------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux0 ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                                                      ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux1 ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                                                      ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux2i ;
++----------------+-------+----------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                 ;
++----------------+-------+----------------------------------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                                                       ;
++----------------+-------+----------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_big_sign ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sml_sign ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_sml ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_common ;
++----------------+-------+------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                               ;
++----------------+-------+------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                     ;
++----------------+-------+------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sticky ;
++----------------+-------+--------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                           ;
++----------------+-------+--------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                 ;
++----------------+-------+--------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|comparator:cmp_m ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                     ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                           ;
++----------------+-------+------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add9 ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_big_minus_sml ;
++----------------+-------+------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                 ;
++----------------+-------+------------------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                                       ;
++----------------+-------+------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_big_minus_sml|ripple_adder:add_tc ;
++----------------+-------+--------------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                     ;
++----------------+-------+--------------------------------------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                                                           ;
++----------------+-------+--------------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_sml_minus_big ;
++----------------+-------+------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                 ;
++----------------+-------+------------------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                                       ;
++----------------+-------+------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_sml_minus_big|ripple_adder:add_tc ;
++----------------+-------+--------------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                     ;
++----------------+-------+--------------------------------------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                                                           ;
++----------------+-------+--------------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_diff_abs ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_norm_in ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                     ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                           ;
++----------------+-------+------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_mag_sign ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_sign_out ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                      ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                            ;
++----------------+-------+-------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add_exp1 ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                          ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                                ;
++----------------+-------+-----------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux0 ;
++----------------+-------+------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                       ;
++----------------+-------+------------------------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                                             ;
++----------------+-------+------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux1 ;
++----------------+-------+------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                       ;
++----------------+-------+------------------------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                                             ;
++----------------+-------+------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux2i ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                        ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                                              ;
++----------------+-------+-------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux3 ;
++----------------+-------+------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                       ;
++----------------+-------+------------------------------------------------------------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                                                                             ;
++----------------+-------+------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_exp_shamt ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                                   ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_exp_shamt|ripple_adder:add_tc ;
++----------------+-------+----------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                 ;
++----------------+-------+----------------------------------------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                                                       ;
++----------------+-------+----------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_mant8_unrounded ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+; n              ; 8     ; Signed Integer                                                                                   ;
++----------------+-------+--------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_guard ;
++----------------+-------+----------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                         ;
++----------------+-------+----------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:rnd ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                     ;
++----------------+-------+------------------------------------------------------------------------------------------+
+; n              ; 8     ; Signed Integer                                                                           ;
++----------------+-------+------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_exp_incdec ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                        ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                              ;
++----------------+-------+---------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add_exp_round ;
++----------------+-------+----------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                               ;
++----------------+-------+----------------------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                                     ;
++----------------+-------+----------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|comparator:cmp_ovf ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                       ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                             ;
++----------------+-------+--------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_sign_out ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_out ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; n              ; 8     ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_exp_out ;
++----------------+-------+---------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                            ;
++----------------+-------+---------------------------------------------------------------------------------+
+; n              ; 7     ; Signed Integer                                                                  ;
++----------------+-------+---------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_overflow ;
++----------------+-------+----------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                             ;
++----------------+-------+----------------------------------------------------------------------------------+
+; n              ; 1     ; Signed Integer                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|comparator:cmp_ovf"             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; b    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; lt   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; gt   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add_exp_round"     ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; b    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; cout ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:rnd" ;
++------+-------+----------+------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                ;
++------+-------+----------+------------------------------------------------------------------------+
+; b    ; Input ; Info     ; Stuck at GND                                                           ;
++------+-------+----------+------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|mux2:sel_guard" ;
++------+-------+----------+----------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                              ;
++------+-------+----------+----------------------------------------------------------------------+
+; a    ; Input ; Info     ; Stuck at GND                                                         ;
++------+-------+----------+----------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_exp_shamt"          ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; b[6..4] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; borrow  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux3" ;
++---------+-------+----------+---------------------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                               ;
++---------+-------+----------+---------------------------------------------------------------------------------------+
+; b[7..0] ; Input ; Info     ; Stuck at GND                                                                          ;
++---------+-------+----------+---------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux2i" ;
++---------+-------+----------+----------------------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                                ;
++---------+-------+----------+----------------------------------------------------------------------------------------+
+; b[3..0] ; Input ; Info     ; Stuck at GND                                                                           ;
++---------+-------+----------+----------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux1" ;
++---------+-------+----------+---------------------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                               ;
++---------+-------+----------+---------------------------------------------------------------------------------------+
+; b[1..0] ; Input ; Info     ; Stuck at GND                                                                          ;
++---------+-------+----------+---------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl|mux2:mux0" ;
++------+-------+----------+------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                  ;
++------+-------+----------+------------------------------------------------------------------------------------------+
+; b[0] ; Input ; Info     ; Stuck at GND                                                                             ;
++------+-------+----------+------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl"          ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; dout[8] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|leading_one_detector9:lod"      ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; zero ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add_exp1"          ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; b    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; cin  ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; cout ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_sml_minus_big"     ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; borrow ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_big_minus_sml|ripple_adder:add_tc" ;
++------+-------+----------+--------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                ;
++------+-------+----------+--------------------------------------------------------------------------------------------------------+
+; cin  ; Input ; Info     ; Stuck at VCC                                                                                           ;
++------+-------+----------+--------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_big_minus_sml"     ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; borrow ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add9" ;
++------+-------+----------+-------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                 ;
++------+-------+----------+-------------------------------------------------------------------------+
+; cin  ; Input ; Info     ; Stuck at GND                                                            ;
++------+-------+----------+-------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|comparator:cmp_m|oneBitComparator:msb" ;
++--------------+-------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type  ; Severity ; Details                                                                             ;
++--------------+-------+----------+-------------------------------------------------------------------------------------+
+; i_gtprevious ; Input ; Info     ; Stuck at GND                                                                        ;
+; i_ltprevious ; Input ; Info     ; Stuck at GND                                                                        ;
++--------------+-------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|comparator:cmp_m"               ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; lt   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:8:ff"  ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:7:ff"  ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:6:ff"  ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:5:ff"  ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:4:ff"  ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:3:ff"  ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:2:ff"  ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:1:ff"  ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big|enARdFF_2:\gen_ff:0:ff"  ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux2i" ;
++---------+-------+----------+-------------------------------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                                         ;
++---------+-------+----------+-------------------------------------------------------------------------------------------------+
+; b[8..5] ; Input ; Info     ; Stuck at GND                                                                                    ;
++---------+-------+----------+-------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux1" ;
++---------+-------+----------+------------------------------------------------------------------------------------------------+
+; Port    ; Type  ; Severity ; Details                                                                                        ;
++---------+-------+----------+------------------------------------------------------------------------------------------------+
+; b[8..7] ; Input ; Info     ; Stuck at GND                                                                                   ;
++---------+-------+----------+------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux0" ;
++------+-------+----------+---------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                           ;
++------+-------+----------+---------------------------------------------------------------------------------------------------+
+; b[8] ; Input ; Info     ; Stuck at GND                                                                                      ;
++------+-------+----------+---------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift" ;
++--------+-------+----------+---------------------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                               ;
++--------+-------+----------+---------------------------------------------------------------------------------------+
+; din[8] ; Input ; Info     ; Stuck at VCC                                                                          ;
++--------+-------+----------+---------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|subtractor:diff_sub|ripple_adder:add_tc" ;
++------+-------+----------+-----------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                       ;
++------+-------+----------+-----------------------------------------------------------------------------------------------+
+; cin  ; Input ; Info     ; Stuck at VCC                                                                                  ;
++------+-------+----------+-----------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|subtractor:diff_sub"              ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; borrow ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|comparator:cmp_exp|oneBitComparator:msb" ;
++--------------+-------+----------+---------------------------------------------------------------------------------------+
+; Port         ; Type  ; Severity ; Details                                                                               ;
++--------------+-------+----------+---------------------------------------------------------------------------------------+
+; i_gtprevious ; Input ; Info     ; Stuck at GND                                                                          ;
+; i_ltprevious ; Input ; Info     ; Stuck at GND                                                                          ;
++--------------+-------+----------+---------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|comparator:cmp_exp"             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; lt   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; eq   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:6:ff"     ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:5:ff"     ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:4:ff"     ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:3:ff"     ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:2:ff"     ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:1:ff"     ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp|enARdFF_2:\gen_ff:0:ff"     ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:7:ff"    ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:6:ff"    ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:5:ff"    ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:4:ff"    ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:3:ff"    ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:2:ff"    ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:1:ff"    ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant|enARdFF_2:\gen_ff:0:ff"    ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_sign|enARdFF_2:\gen_ff:0:ff"    ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr|enARdFF_2:\gen_ff:2:ff"       ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr|enARdFF_2:\gen_ff:1:ff"       ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr|enARdFF_2:\gen_ff:0:ff"       ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; Port   ; Type   ; Severity ; Details                                                                             ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+; o_qbar ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr" ;
++----------+-------+----------+-------------------------------------------------------+
+; Port     ; Type  ; Severity ; Details                                               ;
++----------+-------+----------+-------------------------------------------------------+
+; i_enable ; Input ; Info     ; Stuck at VCC                                          ;
+; i_d[0]   ; Input ; Info     ; Stuck at VCC                                          ;
++----------+-------+----------+-------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fp_add_top:FP"                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; signa       ; Input  ; Info     ; Stuck at GND                                                                        ;
+; manta[5..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; manta[7]    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; manta[6]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; expa[5..0]  ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; expa[6]     ; Input  ; Info     ; Stuck at GND                                                                        ;
+; signb       ; Input  ; Info     ; Stuck at GND                                                                        ;
+; mantb[5..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; mantb[7]    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; mantb[6]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; expb[5..0]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; expb[6]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; o_valid     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Wed Feb 11 12:40:06 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab1_ceg3156 -c lab1_ceg3156
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 1 design units, including 1 entities, in source file top_level.bdf
+    Info (12023): Found entity 1: top_level
+Info (12021): Found 2 design units, including 1 entities, in source file subtractor.vhd
+    Info (12022): Found design unit 1: subtractor-structural
+    Info (12023): Found entity 1: subtractor
+Info (12021): Found 2 design units, including 1 entities, in source file signed_exp_compare.vhd
+    Info (12022): Found design unit 1: signed_exp_compare-structural
+    Info (12023): Found entity 1: signed_exp_compare
+Info (12021): Found 2 design units, including 1 entities, in source file ripple_adder.vhd
+    Info (12022): Found design unit 1: ripple_adder-structural
+    Info (12023): Found entity 1: ripple_adder
+Info (12021): Found 2 design units, including 1 entities, in source file onebitcomparator.vhd
+    Info (12022): Found design unit 1: oneBitComparator-rtl
+    Info (12023): Found entity 1: oneBitComparator
+Info (12021): Found 2 design units, including 1 entities, in source file normalize_unit9.vhd
+    Info (12022): Found design unit 1: normalize_unit9-structural
+    Info (12023): Found entity 1: normalize_unit9
+Info (12021): Found 2 design units, including 1 entities, in source file nbitregister.vhd
+    Info (12022): Found design unit 1: nbitRegister-structural
+    Info (12023): Found entity 1: nbitRegister
+Info (12021): Found 2 design units, including 1 entities, in source file mux2.vhd
+    Info (12022): Found design unit 1: mux2-rtl
+    Info (12023): Found entity 1: mux2
+Info (12021): Found 2 design units, including 1 entities, in source file leading_one_detector9.vhd
+    Info (12022): Found design unit 1: leading_one_detector9-rtl
+    Info (12023): Found entity 1: leading_one_detector9
+Info (12021): Found 2 design units, including 1 entities, in source file full_adder_1bit.vhd
+    Info (12022): Found design unit 1: full_adder_1bit-rtl
+    Info (12023): Found entity 1: full_adder_1bit
+Info (12021): Found 2 design units, including 1 entities, in source file fp_align.vhd
+    Info (12022): Found design unit 1: fp_align-structural
+    Info (12023): Found entity 1: fp_align
+Info (12021): Found 2 design units, including 1 entities, in source file fp_add_datapath.vhd
+    Info (12022): Found design unit 1: fp_add_datapath-rtl
+    Info (12023): Found entity 1: fp_add_datapath
+Info (12021): Found 2 design units, including 1 entities, in source file fp_add_core.vhd
+    Info (12022): Found design unit 1: fp_add_core-structural
+    Info (12023): Found entity 1: fp_add_core
+Info (12021): Found 2 design units, including 1 entities, in source file fp_add_control.vhd
+    Info (12022): Found design unit 1: fp_add_control-structural
+    Info (12023): Found entity 1: fp_add_control
+Info (12021): Found 2 design units, including 1 entities, in source file enardff_2.vhd
+    Info (12022): Found design unit 1: enARdFF_2-rtl
+    Info (12023): Found entity 1: enARdFF_2
+Info (12021): Found 2 design units, including 1 entities, in source file comparator.vhd
+    Info (12022): Found design unit 1: comparator-structural
+    Info (12023): Found entity 1: comparator
+Info (12021): Found 2 design units, including 1 entities, in source file barrel_shifter_right9.vhd
+    Info (12022): Found design unit 1: barrel_shifter_right9-structural
+    Info (12023): Found entity 1: barrel_shifter_right9
+Info (12021): Found 2 design units, including 1 entities, in source file barrel_shifter_left9.vhd
+    Info (12022): Found design unit 1: barrel_shifter_left9-structural
+    Info (12023): Found entity 1: barrel_shifter_left9
+Info (12021): Found 2 design units, including 1 entities, in source file fpdemo.vhd
+    Info (12022): Found design unit 1: fpDemo-s_fpDemo
+    Info (12023): Found entity 1: fpDemo
+Info (12021): Found 2 design units, including 1 entities, in source file fp_add_top.vhd
+    Info (12022): Found design unit 1: fp_add_top-structural
+    Info (12023): Found entity 1: fp_add_top
+Info (12127): Elaborating entity "fpDemo" for the top level hierarchy
+Info (12128): Elaborating entity "fp_add_top" for hierarchy "fp_add_top:FP"
+Info (12128): Elaborating entity "fp_add_control" for hierarchy "fp_add_top:FP|fp_add_control:ctrl"
+Info (12128): Elaborating entity "nbitRegister" for hierarchy "fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr"
+Warning (10036): Verilog HDL or VHDL warning at nbitRegister.vhd(27): object "qbar_dummy" assigned a value but never read
+Info (12128): Elaborating entity "enARdFF_2" for hierarchy "fp_add_top:FP|fp_add_control:ctrl|nbitRegister:valid_sr|enARdFF_2:\gen_ff:0:ff"
+Info (12128): Elaborating entity "fp_add_datapath" for hierarchy "fp_add_top:FP|fp_add_datapath:data"
+Info (12128): Elaborating entity "nbitRegister" for hierarchy "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_sign"
+Warning (10036): Verilog HDL or VHDL warning at nbitRegister.vhd(27): object "qbar_dummy" assigned a value but never read
+Info (12128): Elaborating entity "nbitRegister" for hierarchy "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_mant"
+Warning (10036): Verilog HDL or VHDL warning at nbitRegister.vhd(27): object "qbar_dummy" assigned a value but never read
+Info (12128): Elaborating entity "nbitRegister" for hierarchy "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_A_exp"
+Warning (10036): Verilog HDL or VHDL warning at nbitRegister.vhd(27): object "qbar_dummy" assigned a value but never read
+Info (12128): Elaborating entity "fp_align" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner"
+Warning (10036): Verilog HDL or VHDL warning at fp_align.vhd(60): object "lt" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at fp_align.vhd(60): object "eq" assigned a value but never read
+Info (12128): Elaborating entity "comparator" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|comparator:cmp_exp"
+Info (12128): Elaborating entity "oneBitComparator" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|comparator:cmp_exp|oneBitComparator:msb"
+Info (12128): Elaborating entity "mux2" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:exp_big_sel"
+Info (12128): Elaborating entity "mux2" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:big_mant_sel"
+Info (12128): Elaborating entity "mux2" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|mux2:big_sign_sel"
+Info (12128): Elaborating entity "subtractor" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|subtractor:diff_sub"
+Info (12128): Elaborating entity "ripple_adder" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|subtractor:diff_sub|ripple_adder:add_tc"
+Info (12128): Elaborating entity "full_adder_1bit" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|subtractor:diff_sub|ripple_adder:add_tc|full_adder_1bit:\gen_add:0:fa"
+Info (12128): Elaborating entity "barrel_shifter_right9" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift"
+Info (12128): Elaborating entity "mux2" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_align:aligner|barrel_shifter_right9:align_shift|mux2:mux0"
+Info (12128): Elaborating entity "nbitRegister" for hierarchy "fp_add_top:FP|fp_add_datapath:data|nbitRegister:reg_mant_big"
+Warning (10036): Verilog HDL or VHDL warning at nbitRegister.vhd(27): object "qbar_dummy" assigned a value but never read
+Info (12128): Elaborating entity "fp_add_core" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core"
+Warning (10036): Verilog HDL or VHDL warning at fp_add_core.vhd(90): object "lt_m" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at fp_add_core.vhd(97): object "is_zero" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at fp_add_core.vhd(101): object "cout_exp_inc" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at fp_add_core.vhd(124): object "ov_lt" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at fp_add_core.vhd(124): object "ov_gt" assigned a value but never read
+Info (12128): Elaborating entity "comparator" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|comparator:cmp_m"
+Info (12128): Elaborating entity "ripple_adder" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:add9"
+Info (12128): Elaborating entity "subtractor" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|subtractor:sub_big_minus_sml"
+Info (12128): Elaborating entity "leading_one_detector9" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|leading_one_detector9:lod"
+Info (12128): Elaborating entity "barrel_shifter_left9" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|barrel_shifter_left9:shl"
+Info (12128): Elaborating entity "ripple_adder" for hierarchy "fp_add_top:FP|fp_add_datapath:data|fp_add_core:core|ripple_adder:rnd"
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "SignOut" is stuck at GND
+    Warning (13410): Pin "MantissaOut[0]" is stuck at GND
+    Warning (13410): Pin "MantissaOut[1]" is stuck at GND
+    Warning (13410): Pin "MantissaOut[2]" is stuck at GND
+    Warning (13410): Pin "MantissaOut[3]" is stuck at GND
+    Warning (13410): Pin "Overflow" is stuck at GND
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 35 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 17 output pins
+    Info (21061): Implemented 16 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 4650 megabytes
+    Info: Processing ended: Wed Feb 11 12:40:13 2026
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:04
+
+
