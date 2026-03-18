@@ -1,0 +1,24 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity imm_branch_path is
+  port(
+    imm16     : in  std_logic_vector(15 downto 0);
+    imm8      : out std_logic_vector(7 downto 0);
+    imm8_sl2  : out std_logic_vector(7 downto 0)
+  );
+end entity;
+
+architecture structural of imm_branch_path is
+begin
+  -- sign extend to 8-bit: upper bits filled with imm16(15), low bits = imm16(7:0)
+  imm8(7) <= imm16(15);
+  imm8(6) <= imm16(15);
+  imm8(5) <= imm16(15);
+  imm8(4) <= imm16(15);
+  imm8(3 downto 0) <= imm16(3 downto 0);  -- NOTE: adjust if your lab wants imm16(7 downto 0)
+
+  -- shift left by 2 (wiring): imm8_sl2 = imm8 << 2
+  imm8_sl2(7 downto 2) <= imm8(5 downto 0);
+  imm8_sl2(1 downto 0) <= "00";
+end architecture;

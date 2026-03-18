@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="ceg3156_lab2_qsim">
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_level|Data_memory:inst|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_foi1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_level|muxout_select:inst17|lpm_mux:Mux3" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_level|muxout_select:inst17|lpm_mux:Mux7" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_level|muxout_select:inst17|lpm_mux:Mux0" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_level|muxout_select:inst17|lpm_mux:Mux2" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_level|muxout_select:inst17|lpm_mux:Mux4" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_level|muxout_select:inst17|lpm_mux:Mux6" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_level|Instruction_Memory:inst2|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_kab1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_level|muxout_select:inst17|lpm_mux:Mux1" CBX_FILE_NAME="mux_cqc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_level|muxout_select:inst17|lpm_mux:Mux5" CBX_FILE_NAME="mux_cqc.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

@@ -1,0 +1,42 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity regfile8x8 is
+  port(
+    clk   : in  std_logic;
+    reset : in  std_logic;
+
+    ra1   : in  std_logic_vector(2 downto 0);
+    ra2   : in  std_logic_vector(2 downto 0);
+    wa    : in  std_logic_vector(2 downto 0);
+    wd    : in  std_logic_vector(7 downto 0);
+    we    : in  std_logic;
+
+    rd1   : out std_logic_vector(7 downto 0);
+    rd2   : out std_logic_vector(7 downto 0)
+  );
+end entity;
+
+architecture rtl of regfile8x8 is
+  type reg_array is array (0 to 7) of std_logic_vector(7 downto 0);
+  signal regs : reg_array := (others => (others => '0'));
+begin
+  -- synchronous write, synchronous reset
+  process(clk)
+  begin
+    if rising_edge(clk) then
+      if reset = '1' then
+        regs <= (others => (others => '0'));
+      else
+        if we = '1' then
+          regs(to_integer(unsigned(wa))) <= wd;
+        end if;
+      end if;
+    end if;
+  end process;
+
+  -- combinational reads
+  rd1 <= regs(to_integer(unsigned(ra1)));
+  rd2 <= regs(to_integer(unsigned(ra2)));
+end architecture;

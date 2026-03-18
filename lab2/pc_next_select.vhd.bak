@@ -1,0 +1,51 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity pc_next_select is
+  port(
+    pc_plus4      : in  std_logic_vector(7 downto 0);
+    branch_target : in  std_logic_vector(7 downto 0);
+    jump8         : in  std_logic_vector(7 downto 0);
+
+    BranchEQ      : in  std_logic;
+    BranchNE      : in  std_logic;
+    Zero          : in  std_logic;
+    Jump          : in  std_logic;
+
+    TakeBr        : out std_logic;  -- useful for BranchOut if you want
+    pc_next       : out std_logic_vector(7 downto 0)
+  );
+end entity;
+
+architecture structural of pc_next_select is
+  signal pc_after_branch : std_logic_vector(7 downto 0);
+begin
+  -- Option A branch decision (beq/bne)
+  bt: entity work.branch_take
+    port map(
+      BranchEQ => BranchEQ,
+      BranchNE => BranchNE,
+      Zero     => Zero,
+      TakeBr   => TakeBr
+    );
+
+  -- PC+4 vs BranchTarget
+  m1: entity work.mux2
+    generic map(N => 8)
+    port map(
+      a => pc_plus4,
+      b => branch_target,
+      s => TakeBr,
+      y => pc_after_branch
+    );
+
+  -- (after branch) vs Jump target
+  m2: entity work.mux2
+    generic map(N => 8)
+    port map(
+      a => pc_after_branch,
+      b => jump8,
+      s => Jump,
+      y => pc_next
+    );
+end architecture;

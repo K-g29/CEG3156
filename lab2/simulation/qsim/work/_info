@@ -1,0 +1,85 @@
+m255
+K3
+13
+cModel Technology
+Z0 dH:\CEG3156\lab2\simulation\qsim
+vsingleCycleProc
+Z1 I5C<<KWnaOMz_:ImS[KL:^2
+Z2 V:=89R:<84gM5@Wk8`Hm8S2
+Z3 dH:\CEG3156\lab2\simulation\qsim
+Z4 w1773457655
+Z5 8ceg3156_lab2.vo
+Z6 Fceg3156_lab2.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 !s90 -work|work|ceg3156_lab2.vo|
+Z9 o-work work -O0
+Z10 nsingle@cycle@proc
+!i10b 1
+Z11 !s100 :Xg_K5SF]HZ3X?E7:9eQR2
+!s85 0
+Z12 !s108 1773457657.772000
+Z13 !s107 ceg3156_lab2.vo|
+!s101 -O0
+vsingleCycleProc_vlg_check_tst
+!i10b 1
+!s100 zhiRPE^=ZeZh]XNJo3`9:2
+IB;?9WEU<X]mgo5b_@o?^M2
+VTFVW@JUolGSDeHc_h<]KV3
+R3
+Z14 w1773457653
+Z15 8ceg3156_lab2.vt
+Z16 Fceg3156_lab2.vt
+L0 61
+R7
+r1
+!s85 0
+31
+Z17 !s108 1773457658.195000
+Z18 !s107 ceg3156_lab2.vt|
+Z19 !s90 -work|work|ceg3156_lab2.vt|
+!s101 -O0
+R9
+Z20 nsingle@cycle@proc_vlg_check_tst
+vsingleCycleProc_vlg_sample_tst
+!i10b 1
+Z21 !s100 :AIQ5lYDkKaBLLL1nCY5>0
+Z22 IjVWze=[=<63A9DWG[7k>L2
+Z23 VLOQPQFe>APhTOCHZGeLf;2
+R3
+R14
+R15
+R16
+L0 29
+R7
+r1
+!s85 0
+31
+R17
+R18
+R19
+!s101 -O0
+R9
+Z24 nsingle@cycle@proc_vlg_sample_tst
+vsingleCycleProc_vlg_vec_tst
+!i10b 1
+!s100 O?66^]YDDm>^Q?H;0F:ld1
+I2kVn2oegVeC;^VboV9h]O0
+Z25 VR>gLh3cc;=k2H7d:i8Bbk1
+R3
+R14
+R15
+R16
+L0 973
+R7
+r1
+!s85 0
+31
+R17
+R18
+R19
+!s101 -O0
+R9
+Z26 nsingle@cycle@proc_vlg_vec_tst
