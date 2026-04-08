@@ -1,0 +1,54 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+-- Optional helper: pipeline the instruction word for display as InstructionOut1..5
+-- IF stage instr (I1) comes directly from IMEM; this module registers I2..I5.
+entity pipeline_instr_regs is
+  port(
+    clk      : in  std_logic;
+    resetBar : in  std_logic;
+
+    -- control
+    IFID_en    : in  std_logic; -- stall IF/ID
+    IFID_flush : in  std_logic; -- taken branch: write NOP into IF/ID
+
+    I1_in      : in  std_logic_vector(31 downto 0); -- from IMEM
+
+    I2_out     : out std_logic_vector(31 downto 0);
+    I3_out     : out std_logic_vector(31 downto 0);
+    I4_out     : out std_logic_vector(31 downto 0);
+    I5_out     : out std_logic_vector(31 downto 0);
+
+    -- also provide I2 to feed into ID stage if you want (otherwise use IFID_Instr)
+    I2_tap     : out std_logic_vector(31 downto 0)
+  );
+end entity;
+
+architecture structural of pipeline_instr_regs is
+  signal zeros32 : std_logic_vector(31 downto 0);
+  signal I2_d    : std_logic_vector(31 downto 0);
+
+  signal I3_d, I4_d, I5_d : std_logic_vector(31 downto 0);
+begin
+  zeros32 <= (others => '0');
+
+  -- IF/ID instruction register with flush
+  mI2: entity work.mux2 generic map(N=>32)
+    port map(a => I1_in, b => zeros32, s => IFID_flush, y => I2_d);
+
+  rI2: entity work.nbitRegister generic map(N=>32)
+    port map(i_resetBar=>resetBar, i_enable=>IFID_en, i_clock=>clk, i_d=>I2_d, o_q=>I2_out);
+
+  I2_tap <= I2_out;
+
+  -- ID/EX, EX/MEM, MEM/WB instruction registers (no stall/flush typically; bubble is via control masking)
+  rI3: entity work.nbitRegister generic map(N=>32)
+    port map(i_resetBar=>resetBar, i_enable=>'1', i_clock=>clk, i_d=>I2_out, o_q=>I3_out);
+
+  rI4: entity work.nbitRegister generic map(N=>32)
+    port map(i_resetBar=>resetBar, i_enable=>'1', i_clock=>clk, i_d=>I3_out, o_q=>I4_out);
+
+  rI5: entity work.nbitRegister generic map(N=>32)
+    port map(i_resetBar=>resetBar, i_enable=>'1', i_clock=>clk, i_d=>I4_out, o_q=>I5_out);
+
+end architecture;

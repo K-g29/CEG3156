@@ -1,0 +1,46 @@
+library verilog;
+use verilog.vl_types.all;
+entity pipelinedProc_vlg_check_tst is
+    port(
+        ALUResult_Out   : in     vl_logic_vector(7 downto 0);
+        BranchOut       : in     vl_logic;
+        CtrlPack_Out    : in     vl_logic_vector(7 downto 0);
+        Dbg_A_fwd       : in     vl_logic_vector(7 downto 0);
+        Dbg_ALUInB_EX   : in     vl_logic_vector(7 downto 0);
+        Dbg_B_fwd       : in     vl_logic_vector(7 downto 0);
+        Dbg_EXMEM_MemtoReg: in     vl_logic;
+        Dbg_EXMEM_MemWrite: in     vl_logic;
+        Dbg_EXMEM_RegWrite: in     vl_logic;
+        Dbg_EXMEM_WriteReg: in     vl_logic_vector(2 downto 0);
+        Dbg_ForwardA    : in     vl_logic_vector(1 downto 0);
+        Dbg_ForwardB    : in     vl_logic_vector(1 downto 0);
+        Dbg_ID_rs3      : in     vl_logic_vector(2 downto 0);
+        Dbg_ID_rt3      : in     vl_logic_vector(2 downto 0);
+        Dbg_IDEX_Flush  : in     vl_logic;
+        Dbg_IDEX_Rt     : in     vl_logic_vector(2 downto 0);
+        Dbg_IFID_Flush  : in     vl_logic;
+        Dbg_IFID_Write  : in     vl_logic;
+        Dbg_LoadUseFlush: in     vl_logic;
+        Dbg_MemRead_EX  : in     vl_logic;
+        Dbg_MEMWB_ALUResult: in     vl_logic_vector(7 downto 0);
+        Dbg_MEMWB_MemReadData: in     vl_logic_vector(7 downto 0);
+        Dbg_MEMWB_MemtoReg: in     vl_logic;
+        Dbg_MEMWB_RegWrite: in     vl_logic;
+        Dbg_MEMWB_WriteReg: in     vl_logic_vector(2 downto 0);
+        Dbg_PCWrite     : in     vl_logic;
+        Dbg_WD_WB       : in     vl_logic_vector(7 downto 0);
+        InstructionOut1 : in     vl_logic_vector(31 downto 0);
+        InstructionOut2 : in     vl_logic_vector(31 downto 0);
+        InstructionOut3 : in     vl_logic_vector(31 downto 0);
+        InstructionOut4 : in     vl_logic_vector(31 downto 0);
+        InstructionOut5 : in     vl_logic_vector(31 downto 0);
+        MemWriteOut     : in     vl_logic;
+        PC_Out          : in     vl_logic_vector(7 downto 0);
+        ReadData1_Out   : in     vl_logic_vector(7 downto 0);
+        ReadData2_Out   : in     vl_logic_vector(7 downto 0);
+        RegWriteOut     : in     vl_logic;
+        WriteData_Out   : in     vl_logic_vector(7 downto 0);
+        ZeroOut         : in     vl_logic;
+        sampler_rx      : in     vl_logic
+    );
+end pipelinedProc_vlg_check_tst;

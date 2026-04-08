@@ -1,0 +1,66 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity forwarding_unit is
+  port(
+    -- sources in EX stage (from ID/EX)
+    IDEX_Rs        : in  std_logic_vector(2 downto 0);
+    IDEX_Rt        : in  std_logic_vector(2 downto 0);
+
+    -- destination in MEM stage (from EX/MEM)
+    EXMEM_Rd       : in  std_logic_vector(2 downto 0);
+    EXMEM_RegWrite : in  std_logic;
+
+    -- destination in WB stage (from MEM/WB)
+    MEMWB_Rd       : in  std_logic_vector(2 downto 0);
+    MEMWB_RegWrite : in  std_logic;
+
+    -- forwarding controls to ALU input muxes
+    ForwardA       : out std_logic_vector(1 downto 0);
+    ForwardB       : out std_logic_vector(1 downto 0)
+  );
+end entity;
+
+architecture structural of forwarding_unit is
+  -- equality flags
+  signal ex_eq_rs, ex_eq_rt : std_logic;
+  signal wb_eq_rs, wb_eq_rt : std_logic;
+
+  -- nonzero destination flags (ignore $0)
+  signal ex_rd_nz, wb_rd_nz : std_logic;
+
+  -- match terms
+  signal EX_A, EX_B : std_logic;
+  signal WB_A, WB_B : std_logic;
+
+begin
+  -- ex_rd_nz = OR of bits (EXMEM_Rd /= 000)
+  ex_rd_nz <= EXMEM_Rd(2) or EXMEM_Rd(1) or EXMEM_Rd(0);
+  wb_rd_nz <= MEMWB_Rd(2) or MEMWB_Rd(1) or MEMWB_Rd(0);
+
+  -- 3-bit equality comparators
+  ex_eq_rs <= '1' when (EXMEM_Rd = IDEX_Rs) else '0';
+  ex_eq_rt <= '1' when (EXMEM_Rd = IDEX_Rt) else '0';
+  wb_eq_rs <= '1' when (MEMWB_Rd = IDEX_Rs) else '0';
+  wb_eq_rt <= '1' when (MEMWB_Rd = IDEX_Rt) else '0';
+
+  -- EX stage forwarding matches (priority source)
+  EX_A <= EXMEM_RegWrite and ex_rd_nz and ex_eq_rs;
+  EX_B <= EXMEM_RegWrite and ex_rd_nz and ex_eq_rt;
+
+  -- WB stage forwarding matches (only if EX stage didn’t already match)
+  WB_A <= MEMWB_RegWrite and wb_rd_nz and wb_eq_rs;
+  WB_B <= MEMWB_RegWrite and wb_rd_nz and wb_eq_rt;
+
+  -- ForwardA encoding:
+  -- 00 = no forward
+  -- 10 = from EX/MEM
+  -- 01 = from MEM/WB (only if not EX_A)
+  ForwardA(1) <= EX_A;
+  ForwardA(0) <= WB_A and (not EX_A);
+
+  -- ForwardB encoding
+  ForwardB(1) <= EX_B;
+  ForwardB(0) <= WB_B and (not EX_B);
+
+end architecture;

@@ -1,0 +1,47 @@
+library verilog;
+use verilog.vl_types.all;
+entity pipelinedProc is
+    port(
+        GClock          : in     vl_logic;
+        GResetBar       : in     vl_logic;
+        PC_Out          : out    vl_logic_vector(7 downto 0);
+        ALUResult_Out   : out    vl_logic_vector(7 downto 0);
+        ReadData1_Out   : out    vl_logic_vector(7 downto 0);
+        ReadData2_Out   : out    vl_logic_vector(7 downto 0);
+        WriteData_Out   : out    vl_logic_vector(7 downto 0);
+        CtrlPack_Out    : out    vl_logic_vector(7 downto 0);
+        InstructionOut1 : out    vl_logic_vector(31 downto 0);
+        InstructionOut2 : out    vl_logic_vector(31 downto 0);
+        InstructionOut3 : out    vl_logic_vector(31 downto 0);
+        InstructionOut4 : out    vl_logic_vector(31 downto 0);
+        InstructionOut5 : out    vl_logic_vector(31 downto 0);
+        BranchOut       : out    vl_logic;
+        ZeroOut         : out    vl_logic;
+        MemWriteOut     : out    vl_logic;
+        RegWriteOut     : out    vl_logic;
+        Dbg_MEMWB_RegWrite: out    vl_logic;
+        Dbg_MEMWB_MemtoReg: out    vl_logic;
+        Dbg_MEMWB_ALUResult: out    vl_logic_vector(7 downto 0);
+        Dbg_MEMWB_MemReadData: out    vl_logic_vector(7 downto 0);
+        Dbg_WD_WB       : out    vl_logic_vector(7 downto 0);
+        Dbg_EXMEM_RegWrite: out    vl_logic;
+        Dbg_EXMEM_MemtoReg: out    vl_logic;
+        Dbg_EXMEM_MemWrite: out    vl_logic;
+        Dbg_IDEX_Flush  : out    vl_logic;
+        Dbg_IFID_Flush  : out    vl_logic;
+        Dbg_LoadUseFlush: out    vl_logic;
+        Dbg_PCWrite     : out    vl_logic;
+        Dbg_IFID_Write  : out    vl_logic;
+        Dbg_ID_rs3      : out    vl_logic_vector(2 downto 0);
+        Dbg_ID_rt3      : out    vl_logic_vector(2 downto 0);
+        Dbg_IDEX_Rt     : out    vl_logic_vector(2 downto 0);
+        Dbg_MemRead_EX  : out    vl_logic;
+        Dbg_A_fwd       : out    vl_logic_vector(7 downto 0);
+        Dbg_B_fwd       : out    vl_logic_vector(7 downto 0);
+        Dbg_ALUInB_EX   : out    vl_logic_vector(7 downto 0);
+        Dbg_ForwardA    : out    vl_logic_vector(1 downto 0);
+        Dbg_ForwardB    : out    vl_logic_vector(1 downto 0);
+        Dbg_EXMEM_WriteReg: out    vl_logic_vector(2 downto 0);
+        Dbg_MEMWB_WriteReg: out    vl_logic_vector(2 downto 0)
+    );
+end pipelinedProc;

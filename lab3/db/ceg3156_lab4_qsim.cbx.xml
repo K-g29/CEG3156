@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="ceg3156_lab4_qsim">
+		<CBX_INST_ENTRY INSTANCE_NAME="|pipelinedProc|Instruction_memory:IMEM|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_kab1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|pipelinedProc|new_data_memory:DMEM|altsyncram:RAM_rtl_0" CBX_FILE_NAME="altsyncram_30e1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

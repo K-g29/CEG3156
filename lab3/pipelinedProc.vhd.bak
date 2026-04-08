@@ -1,0 +1,416 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity pipelinedProc is
+  port(
+    GClock        : in  std_logic;
+    GResetBar     : in  std_logic;
+
+    ValueSelect   : in  std_logic_vector(2 downto 0);
+    InstrSelect   : in  std_logic_vector(2 downto 0);
+
+    MuxOut        : out std_logic_vector(7 downto 0);
+    InstructionOut: out std_logic_vector(31 downto 0);
+
+    BranchOut     : out std_logic;
+    ZeroOut       : out std_logic;
+    MemWriteOut   : out std_logic;
+    RegWriteOut   : out std_logic
+  );
+end entity;
+
+architecture structural of pipelinedProc is
+  -- IF
+  signal PC, PCNext, PCPlus4 : std_logic_vector(7 downto 0);
+  signal IF_Instr            : std_logic_vector(31 downto 0);
+
+  signal PCWrite     : std_logic;
+  signal IFID_Write  : std_logic;
+
+  -- IF/ID
+  signal IFID_PC4    : std_logic_vector(7 downto 0);
+  signal IFID_Instr  : std_logic_vector(31 downto 0);
+
+  -- ID fields
+  signal ID_opcode : std_logic_vector(5 downto 0);
+  signal ID_funct  : std_logic_vector(5 downto 0);
+  signal ID_imm16  : std_logic_vector(15 downto 0);
+  signal ID_rs3, ID_rt3, ID_rd3 : std_logic_vector(2 downto 0);
+
+  -- ID control
+  signal RegDst_ID, Jump_ID, MemRead_ID, MemtoReg_ID : std_logic;
+  signal ALUOp1_ID, ALUOp0_ID, MemWrite_ID, ALUSrc_ID, RegWrite_ID : std_logic;
+  signal BranchEQ_ID, BranchNE_ID : std_logic;
+
+  -- ID regfile outputs
+  signal RD1_ID, RD2_ID : std_logic_vector(7 downto 0);
+  signal Imm8_ID        : std_logic_vector(7 downto 0);
+
+  -- ID/EX
+  signal IDEX_PC4   : std_logic_vector(7 downto 0);
+  signal IDEX_RD1   : std_logic_vector(7 downto 0);
+  signal IDEX_RD2   : std_logic_vector(7 downto 0);
+  signal IDEX_Imm8  : std_logic_vector(7 downto 0);
+  signal IDEX_Rs    : std_logic_vector(2 downto 0);
+  signal IDEX_Rt    : std_logic_vector(2 downto 0);
+  signal IDEX_Rd    : std_logic_vector(2 downto 0);
+  signal IDEX_Funct : std_logic_vector(5 downto 0);
+
+  signal RegDst_EX, Jump_EX, BranchEQ_EX, BranchNE_EX : std_logic;
+  signal MemRead_EX, MemtoReg_EX, ALUOp1_EX, ALUOp0_EX : std_logic;
+  signal MemWrite_EX, ALUSrc_EX, RegWrite_EX : std_logic;
+
+  -- EX
+  signal ALUCtrl_EX : std_logic_vector(2 downto 0);
+  signal ForwardA, ForwardB : std_logic_vector(1 downto 0);
+  signal A_fwd, B_fwd : std_logic_vector(7 downto 0);
+  signal ALUInB_EX    : std_logic_vector(7 downto 0);
+  signal ALUResult_EX : std_logic_vector(7 downto 0);
+  signal Zero_EX      : std_logic;
+
+  signal BranchTarget_EX : std_logic_vector(7 downto 0);
+  signal TakeBr_EX       : std_logic;
+
+  signal WriteReg_EX     : std_logic_vector(2 downto 0);
+
+  -- Flush logic
+  signal LoadUseFlush : std_logic;
+  signal IDEX_Flush   : std_logic;
+  signal IFID_Flush   : std_logic;
+
+  -- EX/MEM
+  signal EXMEM_ALUResult : std_logic_vector(7 downto 0);
+  signal EXMEM_WriteData : std_logic_vector(7 downto 0);
+  signal EXMEM_WriteReg  : std_logic_vector(2 downto 0);
+  signal EXMEM_MemRead, EXMEM_MemWrite, EXMEM_MemtoReg, EXMEM_RegWrite : std_logic;
+
+  -- MEM
+  signal MemReadData_MEM : std_logic_vector(7 downto 0);
+
+  -- MEM/WB
+  signal MEMWB_MemReadData : std_logic_vector(7 downto 0);
+  signal MEMWB_ALUResult   : std_logic_vector(7 downto 0);
+  signal MEMWB_WriteReg    : std_logic_vector(2 downto 0);
+  signal MEMWB_MemtoReg    : std_logic;
+  signal MEMWB_RegWrite    : std_logic;
+
+  signal WD_WB : std_logic_vector(7 downto 0);
+
+  -- Instruction viewing (InstrSelect)
+  signal Instr1, Instr2, Instr3, Instr4, Instr5 : std_logic_vector(31 downto 0);
+
+  -- MuxOut ctrl pack (optional)
+  signal CtrlPack8 : std_logic_vector(7 downto 0);
+
+begin
+  -- IF
+  PCREG: entity work.pc8_en
+    port map(clk=>GClock, resetBar=>GResetBar, en=>PCWrite, d=>PCNext, q=>PC);
+
+  PC4: entity work.pc_plus4 port map(pc=>PC, pc_plus=>PCPlus4);
+
+  IMEM: entity work.Instruction_Memory
+    port map(address=>PC, clock=>GClock, q=>IF_Instr);
+
+  Instr1 <= IF_Instr;
+
+  -- IFID flush from taken branch
+  IFID_Flush <= TakeBr_EX;
+
+  -- Instruction pipeline for display (I2..I5) + tap I2
+  IP: entity work.pipeline_instr_regs
+    port map(
+      clk        => GClock,
+      resetBar   => GResetBar,
+      IFID_en    => IFID_Write,
+      IFID_flush => IFID_Flush,
+      I1_in      => IF_Instr,
+      I2_out     => Instr2,
+      I3_out     => Instr3,
+      I4_out     => Instr4,
+      I5_out     => Instr5,
+      I2_tap     => IFID_Instr
+    );
+
+  -- IF/ID PC+4 register (stall + flush not strictly needed for PC+4, but keep consistent)
+  IFID_PC4_REG: entity work.nbitRegister
+    generic map(N=>8)
+    port map(i_resetBar=>GResetBar, i_enable=>IFID_Write, i_clock=>GClock, i_d=>PCPlus4, o_q=>IFID_PC4);
+
+  -- ID fields
+  ID_opcode <= IFID_Instr(31 downto 26);
+  ID_funct  <= IFID_Instr(5 downto 0);
+  ID_imm16  <= IFID_Instr(15 downto 0);
+
+  ID_rs3 <= IFID_Instr(23 downto 21);
+  ID_rt3 <= IFID_Instr(18 downto 16);
+  ID_rd3 <= IFID_Instr(13 downto 11);
+
+  -- ID control
+  CTRL: entity work.control_logic_unit
+    port map(
+      opcode   => ID_opcode,
+      RegDst   => RegDst_ID,
+      Jump     => Jump_ID,
+      BranchEQ => BranchEQ_ID,
+      BranchNE => BranchNE_ID,
+      MemRead  => MemRead_ID,
+      MemtoReg => MemtoReg_ID,
+      ALUOp1   => ALUOp1_ID,
+      ALUOp0   => ALUOp0_ID,
+      MemWrite => MemWrite_ID,
+      ALUSrc   => ALUSrc_ID,
+      RegWrite => RegWrite_ID
+    );
+
+  -- WB mux
+  WDMUX: entity work.mux2
+    generic map(N=>8)
+    port map(a=>MEMWB_ALUResult, b=>MEMWB_MemReadData, s=>MEMWB_MemtoReg, y=>WD_WB);
+
+  -- regfile (write from WB)
+  RF: entity work.regfile8x8
+    port map(
+      clk      => GClock,
+      resetBar => GResetBar,
+      ra1      => ID_rs3,
+      ra2      => ID_rt3,
+      wa       => MEMWB_WriteReg,
+      wd       => WD_WB,
+      we       => MEMWB_RegWrite,
+      rd1      => RD1_ID,
+      rd2      => RD2_ID
+    );
+
+  -- imm8 truncation
+  Imm8_ID(6 downto 0) <= ID_imm16(6 downto 0);
+  Imm8_ID(7)          <= ID_imm16(15);
+
+  -- load-use flush generator (structural compares)
+  LUF: entity work.loaduse_flush
+    port map(
+      IDEX_MemRead => MemRead_EX,
+      IDEX_Rt      => IDEX_Rt,
+      IFID_Rs      => ID_rs3,
+      IFID_Rt      => ID_rt3,
+      IFID_UsesRt  => '1',
+      Flush        => LoadUseFlush
+    );
+
+  -- hazard unit (stall signals)
+  HAZ: entity work.hazard_detection_unit
+    port map(
+      IDEX_MemRead => MemRead_EX,
+      IDEX_Rt      => IDEX_Rt,
+      IFID_Rs      => ID_rs3,
+      IFID_Rt      => ID_rt3,
+      IFID_UsesRt  => '1',
+      PCWrite      => PCWrite,
+      IFID_Write   => IFID_Write,
+      ControlFlush => open
+    );
+
+  -- flush ID/EX controls on load-use bubble OR taken branch
+  IDEX_Flush <= LoadUseFlush or TakeBr_EX;
+
+  -- ID/EX register (masks controls to 0 when flushed)
+  IDEX: entity work.id_ex_reg
+    port map(
+      clk      => GClock,
+      resetBar => GResetBar,
+      en       => '1',
+      flush    => IDEX_Flush,
+
+      pc4_in   => IFID_PC4,
+      rd1_in   => RD1_ID,
+      rd2_in   => RD2_ID,
+      imm8_in  => Imm8_ID,
+      rs_in    => ID_rs3,
+      rt_in    => ID_rt3,
+      rd_in    => ID_rd3,
+      funct_in => ID_funct,
+
+      RegDst_in   => RegDst_ID,
+      Jump_in     => Jump_ID,
+      BranchEQ_in => BranchEQ_ID,
+      BranchNE_in => BranchNE_ID,
+      MemRead_in  => MemRead_ID,
+      MemtoReg_in => MemtoReg_ID,
+      ALUOp1_in   => ALUOp1_ID,
+      ALUOp0_in   => ALUOp0_ID,
+      MemWrite_in => MemWrite_ID,
+      ALUSrc_in   => ALUSrc_ID,
+      RegWrite_in => RegWrite_ID,
+
+      pc4_out   => IDEX_PC4,
+      rd1_out   => IDEX_RD1,
+      rd2_out   => IDEX_RD2,
+      imm8_out  => IDEX_Imm8,
+      rs_out    => IDEX_Rs,
+      rt_out    => IDEX_Rt,
+      rd_out    => IDEX_Rd,
+      funct_out => IDEX_Funct,
+
+      RegDst_out   => RegDst_EX,
+      Jump_out     => Jump_EX,
+      BranchEQ_out => BranchEQ_EX,
+      BranchNE_out => BranchNE_EX,
+      MemRead_out  => MemRead_EX,
+      MemtoReg_out => MemtoReg_EX,
+      ALUOp1_out   => ALUOp1_EX,
+      ALUOp0_out   => ALUOp0_EX,
+      MemWrite_out => MemWrite_EX,
+      ALUSrc_out   => ALUSrc_EX,
+      RegWrite_out => RegWrite_EX
+    );
+
+  -- EX: ALU control
+  ALUCTRL: entity work.alu_control_unit
+    port map(ALUOp1=>ALUOp1_EX, ALUOp0=>ALUOp0_EX, funct=>IDEX_Funct, Operation=>ALUCtrl_EX);
+
+  -- EX: forwarding unit
+  FWD: entity work.forwarding_unit
+    port map(
+      IDEX_Rs        => IDEX_Rs,
+      IDEX_Rt        => IDEX_Rt,
+      EXMEM_Rd       => EXMEM_WriteReg,
+      EXMEM_RegWrite => EXMEM_RegWrite,
+      MEMWB_Rd       => MEMWB_WriteReg,
+      MEMWB_RegWrite => MEMWB_RegWrite,
+      ForwardA       => ForwardA,
+      ForwardB       => ForwardB
+    );
+
+  FWD_MUX: entity work.forwarding_muxes_ex
+    port map(
+      IDEX_A    => IDEX_RD1,
+      IDEX_B    => IDEX_RD2,
+      EXMEM_Val => EXMEM_ALUResult,
+      MEMWB_Val => WD_WB,
+      ForwardA  => ForwardA,
+      ForwardB  => ForwardB,
+      A_fwd     => A_fwd,
+      B_fwd     => B_fwd
+    );
+
+  -- ALUSrc mux
+  ALUSRC_MUX: entity work.mux2
+    generic map(N=>8)
+    port map(a=>B_fwd, b=>IDEX_Imm8, s=>ALUSrc_EX, y=>ALUInB_EX);
+
+  -- ALU
+  ALU0: entity work.alu8
+    port map(a=>A_fwd, b=>ALUInB_EX, ctrl=>ALUCtrl_EX, y=>ALUResult_EX, zero=>Zero_EX);
+
+  -- WriteReg select (rt vs rd)
+  WRMUX: entity work.mux2
+    generic map(N=>3)
+    port map(a=>IDEX_Rt, b=>IDEX_Rd, s=>RegDst_EX, y=>WriteReg_EX);
+
+  -- Branch target from imm8 (EX)
+  BTC8: entity work.branch_target_calc_from_imm8
+    port map(pc_plus4=>IDEX_PC4, imm8=>IDEX_Imm8, branch_target=>BranchTarget_EX);
+
+  -- Branch take decision (EX)
+  BT: entity work.branch_take
+    port map(BranchEQ=>BranchEQ_EX, BranchNE=>BranchNE_EX, Zero=>Zero_EX, TakeBr=>TakeBr_EX);
+
+  -- PCNext select: PC+4 or branch target (jump not shown here)
+  PCSEL: entity work.mux2
+    generic map(N=>8)
+    port map(a=>PCPlus4, b=>BranchTarget_EX, s=>TakeBr_EX, y=>PCNext);
+
+  -- EX/MEM register
+  EXMEM: entity work.ex_mem_reg
+    port map(
+      clk      => GClock,
+      resetBar => GResetBar,
+      en       => '1',
+
+      aluResult_in    => ALUResult_EX,
+      writeData_in    => B_fwd,
+      writeReg_in     => WriteReg_EX,
+
+      takeBr_in       => TakeBr_EX,
+      branchTarget_in => BranchTarget_EX,
+      zero_in         => Zero_EX,
+
+      MemRead_in   => MemRead_EX,
+      MemWrite_in  => MemWrite_EX,
+      MemtoReg_in  => MemtoReg_EX,
+      RegWrite_in  => RegWrite_EX,
+
+      aluResult_out    => EXMEM_ALUResult,
+      writeData_out    => EXMEM_WriteData,
+      writeReg_out     => EXMEM_WriteReg,
+
+      takeBr_out       => open,
+      branchTarget_out => open,
+      zero_out         => open,
+
+      MemRead_out   => EXMEM_MemRead,
+      MemWrite_out  => EXMEM_MemWrite,
+      MemtoReg_out  => EXMEM_MemtoReg,
+      RegWrite_out  => EXMEM_RegWrite
+    );
+
+  -- MEM
+  DMEM: entity work.Data_memory
+    port map(
+      address => EXMEM_ALUResult,
+      clock   => not GClock,
+      data    => EXMEM_WriteData,
+      wren    => EXMEM_MemWrite,
+      q       => MemReadData_MEM
+    );
+
+  -- MEM/WB
+  MEMWB: entity work.mem_wb_reg
+    port map(
+      clk      => GClock,
+      resetBar => GResetBar,
+      en       => '1',
+
+      memReadData_in => MemReadData_MEM,
+      aluResult_in   => EXMEM_ALUResult,
+      writeReg_in    => EXMEM_WriteReg,
+
+      MemtoReg_in => EXMEM_MemtoReg,
+      RegWrite_in => EXMEM_RegWrite,
+
+      memReadData_out => MEMWB_MemReadData,
+      aluResult_out   => MEMWB_ALUResult,
+      writeReg_out    => MEMWB_WriteReg,
+
+      MemtoReg_out => MEMWB_MemtoReg,
+      RegWrite_out => MEMWB_RegWrite
+    );
+
+  -- InstructionOut mux per table 3
+  IMUX: entity work.instr_select_mux
+    port map(
+      InstrSelect => InstrSelect,
+      I1 => Instr1,
+      I2 => Instr2,
+      I3 => Instr3,
+      I4 => Instr4,
+      I5 => Instr5,
+      Y  => InstructionOut
+    );
+
+  -- MuxOut (Table 2) - you can adjust which stage’s signals you want to show
+  CtrlPack8 <= (others => '0');
+  MuxOut <= PC           when ValueSelect = "000" else
+            ALUResult_EX when ValueSelect = "001" else
+            RD1_ID       when ValueSelect = "010" else
+            RD2_ID       when ValueSelect = "011" else
+            WD_WB        when ValueSelect = "100" else
+            CtrlPack8;
+
+  -- outputs
+  BranchOut   <= TakeBr_EX;
+  ZeroOut     <= Zero_EX;
+  MemWriteOut <= EXMEM_MemWrite;
+  RegWriteOut <= MEMWB_RegWrite;
+
+end architecture;

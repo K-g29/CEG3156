@@ -1,0 +1,38 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity hazard_detection_unit is
+  port(
+    -- from ID/EX (instruction currently in EX)
+    IDEX_MemRead : in  std_logic;                 -- 1 when EX is lw
+    IDEX_Rt      : in  std_logic_vector(2 downto 0); -- lw destination
+
+    -- from IF/ID (instruction currently in ID)
+    IFID_Rs      : in  std_logic_vector(2 downto 0);
+    IFID_Rt      : in  std_logic_vector(2 downto 0);
+
+    -- optional: whether ID-stage instruction actually uses Rt as a source
+    -- If you don't have this signal, tie it to '1' (conservative).
+    IFID_UsesRt  : in  std_logic := '1';
+
+    -- outputs
+    PCWrite      : out std_logic;
+    IFID_Write   : out std_logic;
+    ControlFlush : out std_logic
+  );
+end entity;
+
+architecture structural of hazard_detection_unit is
+  signal eq_rs, eq_rt : std_logic;
+  signal stall_i      : std_logic;
+begin
+  eq_rs <= '1' when (IDEX_Rt = IFID_Rs) else '0';
+  eq_rt <= '1' when (IDEX_Rt = IFID_Rt) else '0';
+
+  -- Stall = MemReadEX & (RtEX==RsID | (UsesRt & RtEX==RtID))
+  stall_i <= IDEX_MemRead and (eq_rs or (IFID_UsesRt and eq_rt));
+
+  PCWrite      <= not stall_i;
+  IFID_Write   <= not stall_i;
+  ControlFlush <= stall_i;
+end architecture;

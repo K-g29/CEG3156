@@ -1,0 +1,50 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity control_logic_unit is
+  port(
+    opcode   : in  std_logic_vector(5 downto 0);
+
+    RegDst   : out std_logic;
+    Jump     : out std_logic;
+    BranchEQ : out std_logic;
+    BranchNE : out std_logic;
+    MemRead  : out std_logic;
+    MemtoReg : out std_logic;
+    ALUOp1   : out std_logic;
+    ALUOp0   : out std_logic;
+    MemWrite : out std_logic;
+    ALUSrc   : out std_logic;
+    RegWrite : out std_logic
+  );
+end entity;
+
+architecture structural of control_logic_unit is
+  signal isR, isLW, isSW, isBEQ, isBNE, isJ : std_logic;
+begin
+  dec: entity work.opcode_decode
+    port map(
+      op      => opcode,
+      isRtype => isR,
+      isLW    => isLW,
+      isSW    => isSW,
+      isBEQ   => isBEQ,
+      isBNE   => isBNE,
+      isJ     => isJ
+    );
+
+
+  RegDst   <= isR;
+  ALUSrc   <= isLW or isSW;
+  MemtoReg <= isLW;
+  RegWrite <= isR or isLW;
+  MemRead  <= isLW;
+  MemWrite <= isSW;
+
+  BranchEQ <= isBEQ;
+  BranchNE <= isBNE;
+  Jump     <= isJ;
+
+  ALUOp1   <= isR;
+  ALUOp0   <= isBEQ or isBNE; -- beq/bne both use SUB compare
+end architecture;

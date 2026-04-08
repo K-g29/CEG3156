@@ -1,0 +1,17 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity jump_addr8 is
+  port(
+    instr_index : in  std_logic_vector(25 downto 0);
+    jump8       : out std_logic_vector(7 downto 0)
+  );
+end entity;
+
+architecture rtl of jump_addr8 is
+  signal shifted : std_logic_vector(27 downto 0);
+begin
+  shifted <= instr_index & "00";     -- << 2
+  jump8   <= shifted(7 downto 0);    -- truncate to 8-bit PC 
+end architecture;
